@@ -7,29 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="showCookieValue()">Show cookie value</button>
-
-<button onclick="clearOutputCookieValue()">Clear</button>
-
-<div>
-  <code id="cookie-value"></code>
-</div>
+    <button onclick="checkCookieHasASpecificValue()">Check that a cookie has a specific value</button>
+      
+    <button onclick="clearASpecificValueOfTheCookie()">Clear</button>
+      
+      <div>
+        <code id="a-specific-value-of-the-cookie"></code>
+      </div>
     <script>
-        document.cookie = "test1=Hello; SameSite=None; Secure";
-        document.cookie = "test2=World; SameSite=None; Secure";
-
-const cookieValue = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("test2="))
-  ?.split("=")[1];
-
-function showCookieValue() {
-  const output = document.getElementById("cookie-value");
-  output.textContent = `> ${cookieValue}`;
+        function checkCookieHasASpecificValue() {
+  if (document.cookie.split(";").some((item) => item.includes("reader=1"))) {
+    const output = document.getElementById("a-specific-value-of-the-cookie");
+    output.textContent = '> The cookie "reader" has a value of "1"';
+  }
 }
 
-function clearOutputCookieValue() {
-  const output = document.getElementById("cookie-value");
+function clearASpecificValueOfTheCookie() {
+  const output = document.getElementById("a-specific-value-of-the-cookie");
   output.textContent = "";
 }
     </script>
